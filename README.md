@@ -8,7 +8,7 @@ AI-Powered Conversations: Leverages advanced AI to simulate natural, empathetic 
 Motivational Interviewing Techniques: Incorporates MI strategies to effectively encourage PrEP uptake.
 Targeted for MSM: Tailored content and approach to address the unique needs and challenges faced by MSM.
 
-![CHIA Chatbot](/images/prototype_of CHIA.png "CHIA Chatbot Interface")
+![CHIA](/images/prototype_of CHIA.png "CHIA Chatbot Interface")
 Privacy and Confidentiality: Ensures user privacy, offering a safe space for health discussions.
 Resource Hub: Provides valuable information about HIV prevention, PrEP usage, and access to health services.
 How It Works
