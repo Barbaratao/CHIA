@@ -6,8 +6,8 @@ import openai
 import autogen
 import chromadb
 import multiprocessing as mp
-from hiv-risk import assess_hiv_risk
-
+from hiv_risk import assess_hiv_risk
+import search_provider
 from autogen.retrieve_utils import TEXT_FORMATS, get_file_from_url, is_url
 
 config_list = [
@@ -28,10 +28,38 @@ llm_config={
 TIMEOUT = 60
 
 def initialize_agents(llm_config):
-    if isinstance(llm_config, gr.State):
-        _config_list = llm_config
-    else:
-        _config_list = llm_config
+        llm_config_counselor = {
+        "functions": [
+            {
+                "name": "assess_hiv_risk",
+                "description": "ask patients a couple of questions to assess their HIV risk",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "query": {
+                            "type": "string",
+                            "description": "a series of questions",
+                        }
+                    },
+                    "required": ["questions"],
+                },
+            },
+            {
+                "name": "search_provider",
+                "description": "Visit the website (https://preplocator.org/),input patients' Zipcode to search PrEP providers within a radius of 30 miles, and, scraping website relevant content",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string",
+                            "description": "visit the specified website and input Zip Code",
+                        }
+                    },
+                    "required": ["Zip Code"],
+                },
+            },
+        ],
+        "config_list": llm_config}
 
     autogen.ChatCompletion.start_logging()
 
@@ -46,7 +74,7 @@ def initialize_agents(llm_config):
     
     counselor = autogen.AssistantAgent(
         name="counselor",
-        llm_config=llm_config,
+        llm_config=llm_config_counselor,
         system_message="You are an HIV PrEP counselor. You will be guided by the HIV provider to assess patients' risk and conduct motivational interviewing for PrEP if indicated",
     )
 
