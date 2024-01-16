@@ -6,6 +6,8 @@ import openai
 import autogen
 import chromadb
 import multiprocessing as mp
+from hiv-risk import assess_hiv_risk
+
 from autogen.retrieve_utils import TEXT_FORMATS, get_file_from_url, is_url
 
 config_list = [
