@@ -1,0 +1,45 @@
+from autogen.agentchat.contrib.retrieve_assistant_agent import RetrieveAssistantAgent
+from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent
+config_list = [
+    {
+         'model':"gpt-4-1106-preview",
+         'api_key': 'xx'
+     }]
+
+llm_config={
+        "request_timeout":600,
+        "seed":42,
+        "config_list":config_list,
+        "temperature":0,
+        "top_p":1
+
+    }
+
+def embedding():
+  assistant = RetrieveAssistantAgent(
+      name="assistant",
+      system_message="You are a helpful assistant.",
+      llm_config=llm_config,
+  )
+  
+  openai_ef = embedding_functions.OpenAIEmbeddingFunction(
+                  api_key='xx',
+                  model_name="text-embedding-ada-002"
+              )
+  
+  
+  retrieve_aid = RetrieveUserProxyAgent(
+      name="ragproxyagent",
+      human_input_mode="TERMINATE",
+      max_consecutive_auto_reply=3,
+      system_message=""" you are retrive agent. You have to understand the data have a series of labels that are separted by ";"".
+      You have to search through label first and identify the best match with the question, and then retrieve the content under the specific label  """,
+      retrieve_config={
+          "task": "qa",#check options for task
+          "docs_path": r"xx",
+          "embedding_function": openai_ef,
+          "custom_text_split_function": recur_spliter.split_text,
+          "get_or_create": True,
+      },
+  )
+   return assistant, retrieve_aid
