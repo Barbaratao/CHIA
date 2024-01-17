@@ -1,0 +1,41 @@
+from autogen import UserProxyAgent, config_list_from_json
+from autogen.agentchat.contrib.capabilities.teachability import Teachability
+from autogen import ConversableAgent
+
+import os
+import sys
+
+config_list = [
+    {
+         'model':"gpt-4-1106-preview",
+         'api_key': 'xx'
+     }]
+
+llm_config={
+        "request_timeout":600,
+        "seed":42,
+        "config_list":config_list,
+        "temperature":0,
+        "top_p":1
+
+    }
+def create_teachable_agent(reset_db=False):
+
+    # Start by instantiating any agent that inherits from ConversableAgent.
+    teachable_agent = ConversableAgent(
+        name="teachable_agent",
+        llm_config=llm_config,
+    )
+
+    # Instantiate the Teachability capability. Its parameters are all optional.
+    teachability = Teachability(
+        verbosity=0,  # 0 for basic info, 1 to add memory operations, 2 for analyzer messages, 3 for memo lists.
+        reset_db=reset_db,
+        path_to_db_dir="./tmp/interactive/teachability_db",
+        recall_threshold=1.5,  # Higher numbers allow more (but less relevant) memos to be recalled.
+    )
+
+    # Now add the Teachability capability to the agent.
+    teachability.add_to_agent(teachable_agent)
+
+    return teachable_agent
