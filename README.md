@@ -24,6 +24,8 @@ Encourage steps towards PrEP uptake and adherence.
 Contribution:
 We welcome contributions to CHIA! If you're interested in improving CHIA's functionalities or expanding its resources, please refer to our Contribution Guidelines.
 
+This is only a prototype of CHIA. We will continue working on this and add more features, such as UI interface and data storage. Once the CHIA is fully developed, we will deploy it through Azure. 
+
 License
 This project is licensed under Jun Tao. For more details, see LICENSE.
 
