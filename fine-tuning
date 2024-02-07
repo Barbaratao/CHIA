@@ -1,1 +1,13 @@
+from openai import OpenAI
+client = OpenAI()
 
+*we are not able to share transcripts that use MI techniques.Here we would like to show how to tune the chatgpt model to harness the style and tone of MI. 
+file = client.files.create(
+  file=open("xx.jsonl", "rb"), 
+  purpose="fine-tune"
+)
+
+client.fine_tuning.jobs.create(
+  training_file=file.id,
+  model="gpt-3.5-turbo"
+)
