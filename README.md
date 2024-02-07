@@ -9,9 +9,11 @@ Motivational Interviewing Techniques: Incorporates MI strategies to effectively 
 Targeted for MSM: Tailored content and approach to address the unique needs and challenges faced by MSM.
 
 ![CHIA](https://github.com/Barbaratao/CHIA/blob/main/prototype%20of%20CHIA.png?raw=true "CHIA Chatbot Interface")
+
 Privacy and Confidentiality: Ensures user privacy, offering a safe space for health discussions.
 Resource Hub: Provides valuable information about HIV prevention, PrEP usage, and access to health services.
-How It Works
+
+How It Works:
 CHIA engages users in interactive dialogues, applying MI techniques to:
 
 Assess individual needs and concerns regarding HIV prevention.
@@ -19,7 +21,7 @@ Address misconceptions and provide accurate information about PrEP.
 Guide users towards making informed decisions about their health.
 Encourage steps towards PrEP uptake and adherence.
 
-Contribution
+Contribution:
 We welcome contributions to CHIA! If you're interested in improving CHIA's functionalities or expanding its resources, please refer to our Contribution Guidelines.
 
 License
